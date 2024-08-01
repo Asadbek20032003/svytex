@@ -1,13 +1,22 @@
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [doubleDropdownOpen, setDoubleDropdownOpen] = useState(false);
+
+  const toggleNavbar = () => setNavbarOpen(!navbarOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleDoubleDropdown = () => setDoubleDropdownOpen(!doubleDropdownOpen);
+
   return (
     <div className="container m-auto bg-[#0000] ">
-      <nav className="bg-transparent dark:bg-gray-900 fixed w-full z-20 top-0 start-0  ">
+      <nav className="bg-transparent dark:bg-gray-900 fixed w-full z-20 top-0 start-0">
         <div className="max-w-screen-xl flex flex-wrap items-top justify-between mx-auto">
-          <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse p-4 ">
+          <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse p-4">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SVYTEX</span>
-          </a>
+          </NavLink>
           <div className="flex mf:order-2 space-x-3 mf:space-x-0 rtl:space-x-reverse p-4">
             <button
               type="button"
@@ -21,6 +30,7 @@ const Navbar = () => {
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg mf:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="navbar-sticky"
               aria-expanded="false"
+              onClick={toggleNavbar}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -40,51 +50,73 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className="items-center justify-between hidden w-full mf:flex mf:w-auto mf:order-1" id="navbar-sticky">
+          <div
+            className={`items-center justify-between ${
+              navbarOpen ? "block" : "hidden"
+            } w-full mf:flex mf:w-auto mf:order-1`}
+            id="navbar-sticky"
+          >
             <ul
               style={{
                 borderRadius: "0 0 2rem 2rem",
               }}
-              className="flex flex-col mf:pl-8 mf:p-5 mt-4 font-medium border border-gray-100  bg-gray-50 mf:space-x-8 rtl:space-x-reverse mf:flex-row mf:mt-0 mf:border-0 mf:bg-white dark:bg-gray-800 mf:dark:bg-gray-900 dark:border-gray-700"
+              className="flex flex-col mf:pl-8 mf:p-5 mt-4 font-medium border border-gray-100 bg-gray-50 mf:space-x-8 rtl:space-x-reverse mf:flex-row mf:mt-0 mf:border-0 mf:bg-white dark:bg-gray-800 mf:dark:bg-gray-900 dark:border-gray-700"
             >
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-white bg-blue-700 rounded mf:bg-transparent mf:text-blue-700 mf:p-0 mf:dark:text-blue-500"
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 text-white bg-blue-700 rounded mf:bg-transparent mf:text-blue-700 mf:p-0 mf:dark:text-blue-500"
+                      : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 mf:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white mf:dark:hover:bg-transparent dark:border-gray-700"
+                  }
                   aria-current="page"
                 >
                   Главное
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 mf:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white mf:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/instructions"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 text-white bg-blue-700 rounded mf:bg-transparent mf:text-blue-700 mf:p-0 mf:dark:text-blue-500"
+                      : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 mf:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white mf:dark:hover:bg-transparent dark:border-gray-700"
+                  }
                 >
                   Инструкция
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 mf:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white mf:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/prices"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 text-white bg-blue-700 rounded mf:bg-transparent mf:text-blue-700 mf:p-0 mf:dark:text-blue-500"
+                      : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 mf:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white mf:dark:hover:bg-transparent dark:border-gray-700"
+                  }
                 >
                   Прайс
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/how-to-start"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 text-white bg-blue-700 rounded mf:bg-transparent mf:text-blue-700 mf:p-0 mf:dark:text-blue-500"
+                      : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 mf:hover:bg-transparent mf:hover:text-blue-700 mf:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  }
                 >
                   Как начать
-                </a>
+                </NavLink>
               </li>
               <li>
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
                   className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                  onClick={toggleDropdown}
                 >
                   Ещё
                   <svg
@@ -106,16 +138,22 @@ const Navbar = () => {
 
                 <div
                   id="dropdownNavbar"
-                  className="hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                  className={`absolute ${
+                    dropdownOpen ? "block" : "hidden"
+                  } font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
                 >
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
                     <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      <NavLink
+                        to="/main"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                            : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        }
                       >
                         Главное
-                      </a>
+                      </NavLink>
                     </li>
                     <li aria-labelledby="dropdownNavbarLink">
                       <button
@@ -124,6 +162,7 @@ const Navbar = () => {
                         data-dropdown-placement="right-start"
                         type="button"
                         className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        onClick={toggleDoubleDropdown}
                       >
                         Ещё
                         <svg
@@ -144,63 +183,89 @@ const Navbar = () => {
                       </button>
                       <div
                         id="doubleDropdown"
-                        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                        className={`absolute left-full top-0 ${
+                          doubleDropdownOpen ? "block" : "hidden"
+                        } z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
                       >
                         <ul
                           className="py-2 text-sm text-gray-700 dark:text-gray-200"
                           aria-labelledby="doubleDropdownButton"
                         >
                           <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            <NavLink
+                              to="/instruction"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                                  : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                              }
                             >
                               Инструкция
-                            </a>
+                            </NavLink>
                           </li>
                           <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            <NavLink
+                              to="/my-downloads"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                                  : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                              }
                             >
-                              My downloads
-                            </a>
+                              Мои загрузки
+                            </NavLink>
                           </li>
                           <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            <NavLink
+                              to="/price"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                                  : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                              }
                             >
                               Прайс
-                            </a>
+                            </NavLink>
                           </li>
                           <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            <NavLink
+                              to="/how-start"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                                  : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                              }
                             >
                               Как начать
-                            </a>
+                            </NavLink>
                           </li>
                         </ul>
                       </div>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      <NavLink
+                        to="/how-to"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "block px-4 py-2 bg-gray-100 dark:bg-gray-600 dark:text-white"
+                            : "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        }
                       >
                         Как начать
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                   <div className="py-1">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    <NavLink
+                      to="/sign-out"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "block px-4 py-2 text-sm bg-gray-100 dark:bg-gray-600 dark:text-white"
+                          : "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      }
                     >
-                      Sign out
-                    </a>
+                      Выйти
+                    </NavLink>
                   </div>
                 </div>
               </li>
