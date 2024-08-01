@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg__image {
+  background-image: url("./assets/img/1.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.gradient__text {
+  background: linear-gradient(91.13deg, #006dff 8.59%, #00dbe9 99.08%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.bg__image_air {
+  background-image: url("./assets/img/2.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.bg__image_info {
+  background-image: url("./assets/img/3.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.title {
+  background: linear-gradient(90deg, rgb(10, 126, 250), rgb(4, 203, 238));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 77px;
+  letter-spacing: 0%;
+  text-align: left;
+}
